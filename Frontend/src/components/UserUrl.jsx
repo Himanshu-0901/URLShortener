@@ -238,7 +238,7 @@ const UserUrl = () => {
                       onClick={() =>
                         handleCopy("http://localhost:3000/" + url.short_url, url._id)
                       }
-                      className={`text-sm px-4 py-1 rounded transition ${
+                      className={`text-sm px-4 py-1 w-26 rounded transition ${
                         copiedId === url._id
                           ? 'bg-green-100 text-green-700 border border-green-300'
                           : 'bg-indigo-100 text-indigo-700 border border-indigo-300 hover:bg-indigo-200'
