@@ -14,7 +14,7 @@ const Navbar = () => {
       logout()
       navigate({to:"/"})
   }
-  // console.log(userName.user.name)
+  
   return (
     <nav className="bg-white shadow-md px-6 py-4 flex justify-between items-center">
       {/* Left side - App Name */}
@@ -25,7 +25,7 @@ const Navbar = () => {
       </div>
 
       {/* Right side - Login link */}
-      <div className='flex items-center'>
+      {/* <div className='flex items-center'>
         {isAuthenticated ? (
             <div className='flex items-center space-x-4'>
 
@@ -38,14 +38,14 @@ const Navbar = () => {
                 </div>
         ) : (
             <Link to="/auth"
-            className='bg-blue-500 hover-bg-blue-600 text-white px-4'
+            className='bg-indigo-600 hover-bg-blue-600 text-white px-4'
             >
                 Login
             </Link>
         )
-        }
+        } */}
        
-      </div>
+      {/* </div> */}
     </nav>
   );
 };

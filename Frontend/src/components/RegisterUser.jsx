@@ -83,7 +83,7 @@ const RegisterForm = ({state}) =>{
           type="submit"
           onClick={handleSubmit}
           disabled={loading}
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-green-700"
+          className="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700"
         >
           {loading ? 'Registering...' : 'Register'}
         </button>

@@ -13,8 +13,13 @@ export const createShortUrl = wrapAsync( async (req,res,next)=>{
         console.log(data.url,data.slug)
         shortUrl = await createShortUrlServiceWithUser(data.url,req.user._id,data.slug)
     }
+    if(shortUrl=="Url Exists"){
+        res.status(200).json({shortUrl:"Url Exists"})
+    }
+    else{
     res.status(200).json({shortUrl : process.env.APP_URL + shortUrl});
     //res.status(401).send("not all")
+    }
     }
 )
 

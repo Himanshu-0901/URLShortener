@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import { createShortUrl } from '../api/shortUrl.api.js';
 import { useSelector } from 'react-redux';
+import { AuthPage } from '../pages/AuthPage.jsx';
+import { Link } from '@tanstack/react-router';
 
 export const UrlForm = () => {
 
@@ -12,8 +14,13 @@ export const UrlForm = () => {
 
   const handleSubmit = async () => {
     const data = customSlug.length>0 ? await createShortUrl(url,customSlug) : await createShortUrl(url) 
+    if(data.shortUrl == "Url Exists"){
+      alert("Short Url Already Exists")
+    }
+    else{
     setShortUrl(data)
   }
+}
 
 
   const [copied, setCopied] = useState(false);
@@ -23,7 +30,7 @@ export const UrlForm = () => {
     setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
   };
   return (
-    <div>
+    <div className="p-6 max-w-4xl mx-auto">
       <div className="space-y-4" >
         <label>Enter Your URL</label>
         <input
@@ -41,6 +48,18 @@ export const UrlForm = () => {
         >
           Shorten URL
         </button>
+        { !isAuthenticated && (
+        <div className='flex justify-center'>
+        <hr class="flex-grow border-t border-gray-400"/>
+        <Link to="/auth"
+        className='mx-4 px-4 py-2 text-blue-500'
+        >
+          Login
+        </Link>
+        <hr class="flex-grow border-t border-gray-400"/>
+        </div>
+        )  
+      }
       </div>
       {
         isAuthenticated && (

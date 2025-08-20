@@ -25,7 +25,6 @@ const LoginForm = ({ state }) => {
         const data = await login(formData.email, formData.password)
         dispatch(loginn(data.user))
         navigate({to:"/dashboard"})
-       // console.log(data)
     };
 
     
@@ -62,7 +61,7 @@ const LoginForm = ({ state }) => {
                 <button
                     type="submit"
                     onClick={handleSubmit}
-                    className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+                    className="w-full bg-indigo-600 text-white py-2 rounded hover:bg-blue-700"
                 >
                     Login
                 </button>
