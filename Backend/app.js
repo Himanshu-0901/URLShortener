@@ -38,7 +38,7 @@ app.get("/:id",redirectFromShortUrl)
 
 app.use(errorHandler)
 
-app.listen(3000,()=>{
+app.listen(process.env.Port || 3000,()=>{
     connectDB()
     console.log("Server is running. - 3000")
 })
