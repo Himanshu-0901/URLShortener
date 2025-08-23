@@ -29,6 +29,8 @@ export const UrlForm = () => {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
   };
+
+
   return (
     <div className="p-6 max-w-4xl mx-auto">
       <div className="space-y-4" >
@@ -50,13 +52,13 @@ export const UrlForm = () => {
         </button>
         { !isAuthenticated && (
         <div className='flex justify-center'>
-        <hr class="flex-grow border-t border-gray-400"/>
+        <hr className="flex-grow border-t border-gray-400"/>
         <Link to="/auth"
         className='mx-4 px-4 py-2 text-blue-500'
         >
           Login
         </Link>
-        <hr class="flex-grow border-t border-gray-400"/>
+        <hr className="flex-grow border-t border-gray-400"/>
         </div>
         )  
       }
@@ -64,7 +66,7 @@ export const UrlForm = () => {
       {
         isAuthenticated && (
           <div className='mt-4'>
-            <label htmlFor='customSlug' className='block text-sm font-median text-gray-700 mb-1'>
+            <label>
               Custom Slug(Optional)
             </label>
             <input

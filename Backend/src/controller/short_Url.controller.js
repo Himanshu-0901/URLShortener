@@ -10,7 +10,6 @@ export const createShortUrl = wrapAsync( async (req,res,next)=>{
         shortUrl = await createShortUrlServiceWithoutUser(data.url)
     }
     else{
-        console.log(data.url,data.slug)
         shortUrl = await createShortUrlServiceWithUser(data.url,req.user._id,data.slug)
     }
     if(shortUrl=="Url Exists"){

@@ -164,18 +164,21 @@
 
 
 
-import React, { useState } from 'react';
+import React, { useState} from 'react';
+import { useSelector } from 'react-redux';
 import { useQuery } from '@tanstack/react-query';
 import { getUrls } from '../api/user.api.js';
 
 const UserUrl = () => {
-  const { data: urls, isLoading, isError, error } = useQuery({
+  const { data: urls } = useQuery({
     queryKey: ['userUrls'],
     queryFn: getUrls,
-    refetchInterval: 30000,
+    
     staleTime: 0,
   });
 
+  
+  const { isAuthenticated } = useSelector((state) => state.auth)
   const [copiedId, setCopiedId] = useState(null);
 
   const handleCopy = (url, id) => {
@@ -186,27 +189,31 @@ const UserUrl = () => {
     }, 2000);
   };
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center my-8">
-        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-indigo-500" />
-      </div>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className="flex justify-center my-8">
+  //       <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-indigo-500" />
+  //     </div>
+  //   );
+  // }
 
-  if (isError) {
-    return (
-      <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-4">
-        Error loading your URLs: {error.message}
-      </div>
-    );
-  }
+  // if (isError) {
+  //   return (
+  //     <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-4">
+  //       Error loading your URLs: {error.message}
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6 text-indigo-600">🔗 Your Shortened URLs</h1>
-      {urls.length === 0 ? (
-        <p className="text-gray-500">No URLs found!</p>
+      <h1 className="text-3xl font-bold mb-6">Your Shortened URLs</h1>
+     
+
+
+{
+      (urls == undefined || urls.length === 0) ? (
+        <p className="text-gray-500">"No URLs found!</p>
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full border border-gray-200 shadow-md rounded-lg">
@@ -252,7 +259,9 @@ const UserUrl = () => {
             </tbody>
           </table>
         </div>
-      )}
+      )
+    }
+    
     </div>
   );
 };

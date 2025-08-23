@@ -8,7 +8,7 @@ import Navbar from './components/NavBar.jsx';
 function RootLayout() {
   return (
     <>
-    {/* <Navbar/> */}
+    <Navbar/>
     <Outlet/>
     </>
   );

@@ -14,12 +14,15 @@ const authSlice = createSlice({
     loginn: (state, action) => {
       state.user = action.payload;
       //state.token = action.payload.token;
+      
       state.isAuthenticated = true;
+      
     },
     logoutt: (state) => {
       state.user = null;
       //state.token = null;
       state.isAuthenticated = false;
+
     },
   },
 });

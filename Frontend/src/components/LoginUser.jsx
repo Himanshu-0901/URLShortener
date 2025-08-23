@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import {loginn} from '../store/slice/authSlice.js';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch,useSelector} from 'react-redux';
 import { login } from '../api/user.api.js';
 import {useNavigate}  from '@tanstack/react-router';
 
 const LoginForm = ({ state }) => {
     const [formData, setFormData] = useState({
-        email: '',
-        password: ''
+        email: "Jayanti@gmail.com",
+        password:"Jayanti123"
     });
 
     const handleChange = (e) => {
@@ -16,10 +16,10 @@ const LoginForm = ({ state }) => {
             [e.target.name]: e.target.value
         });
     };
+ 
     
-    const auth = useSelector((state) => state.auth);
+  
     const dispatch = useDispatch()
-    console.log(auth)
     const navigate = useNavigate()
     const handleSubmit = async (e) => {
         const data = await login(formData.email, formData.password)
@@ -28,8 +28,13 @@ const LoginForm = ({ state }) => {
     };
 
     
+
+    
    
     return (
+        <>
+        {/* isAuthenticated ? {navigate({to:"/dashboard"})}
+        : */}
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
             <div
 
@@ -72,6 +77,7 @@ const LoginForm = ({ state }) => {
                 </p>
             </div>
         </div>
+        </>
     );
 };
 

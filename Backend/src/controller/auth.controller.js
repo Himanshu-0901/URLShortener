@@ -23,8 +23,9 @@ export const login_user = wrapAsync(async(req,res)=>{
 export const logout_user = wrapAsync(async(req,res)=>{
     res.clearCookie("accessToken", {
         httpOnly: true,
-        secure: true, // set true if using https
-        sameSite: "strict",
+        secure : process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        path:"/"
       });
     res.status(201).json({message:"logout"})
 })
