@@ -15,7 +15,6 @@ export const login_user = wrapAsync(async(req,res)=>{
     
     const {token,user} = await loginUser(email,password)
     req.user = user
-    //console.log(user)
     res.cookie("accessToken",token,cookieOptions)
     res.status(201).json({user:user,message:"login success"})
 })
@@ -23,7 +22,7 @@ export const login_user = wrapAsync(async(req,res)=>{
 export const logout_user = wrapAsync(async(req,res)=>{
     res.clearCookie("accessToken", {
         httpOnly: true,
-        secure : process.env.NODE_ENV === "production",
+        secure : false,
         sameSite: "lax",
         path:"/"
       });
@@ -32,4 +31,9 @@ export const logout_user = wrapAsync(async(req,res)=>{
 
 export const current_user = wrapAsync(async(req,res)=>{
     res.status(200).json({user:req.user})
+})
+
+export const get_Cookie = wrapAsync(async(req,res)=>{
+    let cookie = req.cookies.accessToken
+    res.status(200).json({message:cookie != undefined})
 })

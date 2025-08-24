@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import {loginn} from '../store/slice/authSlice.js';
 import { useDispatch,useSelector} from 'react-redux';
-import { login } from '../api/user.api.js';
-import {useNavigate}  from '@tanstack/react-router';
+import { fetchCookies, login } from '../api/user.api.js';
+import {useNavigate,useRouter}  from '@tanstack/react-router';
+
+
 
 const LoginForm = ({ state }) => {
     const [formData, setFormData] = useState({
-        email: "Jayanti@gmail.com",
-        password:"Jayanti123"
+        email: "",
+        password:""
     });
 
     const handleChange = (e) => {
@@ -26,19 +28,30 @@ const LoginForm = ({ state }) => {
         dispatch(loginn(data.user))
         navigate({to:"/dashboard"})
     };
-
+    const router = useRouter()
+ 
+    const getCookies = async()=>{
+        
+        let bool = await fetchCookies();
+        if(bool){
+            router.navigate({to:"/dashboard"})
+        }
+    }
     
-
+    useEffect(()=>{
+        getCookies();
+    },[])
+    
+    
     
    
     return (
         <>
-        {/* isAuthenticated ? {navigate({to:"/dashboard"})}
-        : */}
+        
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
             <div
 
-                className="bg-white p-8 rounded shadow-md w-full max-w-sm"
+                className="bg-white p-8 rounded-xl shadow-md w-full max-w-sm"
             >
                 <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
 

@@ -25,3 +25,8 @@ export const getUrls = async()=>{
    let extractedUrl = urls.data.urls
     return extractedUrl
 }
+
+export const fetchCookies = async()=>{
+    const cookie = await axiosInstance.get("/api/auth/getCookie")
+    return cookie.data.message
+}

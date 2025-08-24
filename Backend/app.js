@@ -1,5 +1,4 @@
 import express, { urlencoded } from "express";
-import {nanoid} from "nanoid";
 import dotenv from "dotenv";
 dotenv.config("./.env")
 import cors from "cors";
@@ -30,6 +29,12 @@ app.use(attachUser)
 
 app.use("/api/auth",auth_routes)
 app.use("/api/create",short_Url)
+
+app.post("/delete",async(req,res)=>{
+    let {id} = req.body 
+    await urlSchema.findByIdAndDelete(id);
+    res.status(200).json({message:"Success"})
+})
 
 app.use("/api/urls",get_urls_router)
 
