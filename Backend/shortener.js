@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+import axios from "axios";
+import chalk from "chalk";
+
+const inputUrl = process.argv[2]; // take URL from CLI
+
+if (!inputUrl) {
+  console.log(chalk.red("❌ Please provide a URL!"));
+  process.exit(1);
+}
+
+async function shortenUrl() {
+  try {
+    const res = await axios.post("http://localhost:3000/shorten", {
+      url: inputUrl,
+    });
+
+    console.log(chalk.green("✅ Short URL:"), chalk.blue(res.data.shortUrl));
+  } catch (err) {
+    console.error(chalk.red("⚠️ Error:"), err.message);
+  }
+}
+
+shortenUrl();

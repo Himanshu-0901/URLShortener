@@ -29,3 +29,9 @@ export const redirectFromShortUrl = wrapAsync( async (req,res)=>{
     res.redirect(url.full_url)
 }
 )
+
+export const deleteUrl = wrapAsync(async(req,res)=>{
+        let {id} = req.body 
+        await urlSchema.findByIdAndDelete(id);
+        res.status(200).json({message:"Success"})
+})
