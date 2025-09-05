@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import axios from "axios";
 import chalk from "chalk";
+import dotenv from "dotenv";
+dotenv.config("./.env")
 
 const inputUrl = process.argv[2]; 
 
@@ -11,7 +13,8 @@ if (!inputUrl) {
 
 async function shortenUrl() {
   try {
-    const res = await axios.post(`${process.env.APP_URL}/shorten`, {
+    console.log(process.env.APP_URL)
+    const res = await axios.post(`${process.env.APP_URL}shorten`, {
       url: inputUrl,
     });
 
